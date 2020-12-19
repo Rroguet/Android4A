@@ -35,8 +35,5 @@ class MainActivity : AppCompatActivity() {
         login_button.setOnClickListener {
             mainViewModel.onClickedLogin(login_edit.text.toString().trim(), password_edit.text.toString())
         }
-        /*mainViewModel.counter.observe(this, Observer {
-            value-> main_text.text = value.toString()
-        })*/
     }
 }
