@@ -7,26 +7,31 @@ import com.esiea.android4a.domain.entity.User
 import com.esiea.android4a.domain.usecase.CreateUserUseCase
 import com.esiea.android4a.domain.usecase.GetUserUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainViewModel(
     private val createUserUseCase: CreateUserUseCase,
     private val getUserUseCase: GetUserUseCase
 ) : ViewModel(){
-    val counter : MutableLiveData<Int> = MutableLiveData()
+    val loginLiveData : MutableLiveData<LoginStatus> = MutableLiveData()
 
-    init {
-        counter.value = 0
-    }
-
-    fun onClickedIncrement(nameUser: String){
+    fun onClickedLogin(login: String, password: String){
         viewModelScope.launch(Dispatchers.IO) {
-            createUserUseCase.invoke(User("nom_est_test"))
-            val user = getUserUseCase.invoke("nom_est_test")
-            val debug = "debug"
+            val user = getUserUseCase.invoke(login,password)
+            val loginStatus = if (user != null){
+                LoginSuccess(user.login)
+            }else{
+                LoginError
+            }
+
+            withContext(Dispatchers.Main){
+                loginLiveData.value = loginStatus
+            }
+
+            //createUserUseCase.invoke(User("nom_est_test"))
+            //val user = getUserUseCase.invoke("nom_est_test")
         }
     }
 }

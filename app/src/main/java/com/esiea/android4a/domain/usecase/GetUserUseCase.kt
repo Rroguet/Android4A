@@ -6,7 +6,7 @@ import com.esiea.android4a.domain.entity.User
 class GetUserUseCase (
     private val userRespository: UserRespository
 ) {
-    suspend fun invoke(name: String): User {
-        return userRespository.getUser(name)
+    suspend fun invoke(login: String, password: String): User? {
+        return userRespository.getUser(login, password)
     }
 }

@@ -29,6 +29,6 @@ fun createDatabase(context: Context): DatabaseDao {
     val appDatabase = Room.databaseBuilder(
         context,
         AppDatabase::class.java, "database-name"
-    ).build()
+    ).fallbackToDestructiveMigration().build()
     return appDatabase.databaseDao()
 }

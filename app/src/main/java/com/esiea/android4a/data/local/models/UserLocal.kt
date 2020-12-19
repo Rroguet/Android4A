@@ -9,19 +9,22 @@ import com.esiea.android4a.domain.entity.User
 
 @Entity
 data class UserLocal(
-    @ColumnInfo(name = "name") val name: String
+    @ColumnInfo(name = "login") val login: String,
+    @ColumnInfo(name = "password") val password: String
 ){
     @PrimaryKey(autoGenerate = true) var uid: Int? = null
 }
 
 fun User.toData() : UserLocal{
     return UserLocal(
-        name = name
+        login = login,
+        password = password
     )
 }
 
 fun UserLocal.toEntity() : User{
     return User(
-        name = name
+        login = login,
+        password = password
     )
 }
