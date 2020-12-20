@@ -18,7 +18,7 @@ class RegisterViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val registerStatus = if (login != "" && password != "") {
                 createUserUseCase.invoke(User(login, password))
-                RegisterSuccess(login)
+                RegisterSuccess
             } else {
                 RegisterError
             }
