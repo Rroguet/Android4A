@@ -8,11 +8,13 @@ import com.esiea.android4a.data.repository.UserRespository
 import com.esiea.android4a.domain.usecase.CreateUserUseCase
 import com.esiea.android4a.domain.usecase.GetUserUseCase
 import com.esiea.android4a.presentation.main.MainViewModel
+import com.esiea.android4a.presentation.register.RegisterViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val presentationModule = module {
-    factory { MainViewModel(get(), get()) }
+    factory { MainViewModel(get()) }
+    factory { RegisterViewModel(get())}
 }
 
 val domainModule = module {
