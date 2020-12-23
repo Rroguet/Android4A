@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.esiea.android4a.R
+import com.esiea.android4a.presentation.list.ListActivity
 import com.esiea.android4a.presentation.register.RegisterActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,18 +22,21 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.loginLiveData.observe(this, Observer {
             when(it){
                 is LoginSuccess -> {
-                    MaterialAlertDialogBuilder(this)
-                        .setTitle("ok")
-                        .setMessage("ok")
-                        .setPositiveButton("Ok") { dialog, which ->
-                            dialog.dismiss()
-                        }
-                        .show()
+                    val intent = Intent(this, ListActivity::class.java)
+                    startActivity(intent)
                 }
                 LoginError -> {
                     MaterialAlertDialogBuilder(this)
                         .setTitle("Erreur")
                         .setMessage("Compte inconnu")
+                        .setPositiveButton("Ok") { dialog, which -> dialog.dismiss()
+                        }
+                        .show()
+                }
+                LoginEmpty -> {
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Erreur")
+                        .setMessage("Login ou password vide")
                         .setPositiveButton("Ok") { dialog, which ->
                             dialog.dismiss()
                         }

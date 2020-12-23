@@ -7,6 +7,8 @@ import com.esiea.android4a.data.local.DatabaseDao
 import com.esiea.android4a.data.repository.UserRespository
 import com.esiea.android4a.domain.usecase.CreateUserUseCase
 import com.esiea.android4a.domain.usecase.GetUserUseCase
+import com.esiea.android4a.presentation.description.DescriptionViewModel
+import com.esiea.android4a.presentation.list.ListViewModel
 import com.esiea.android4a.presentation.main.MainViewModel
 import com.esiea.android4a.presentation.register.RegisterViewModel
 import org.koin.android.ext.koin.androidContext
@@ -14,7 +16,9 @@ import org.koin.dsl.module
 
 val presentationModule = module {
     factory { MainViewModel(get()) }
-    factory { RegisterViewModel(get())}
+    factory { RegisterViewModel(get()) }
+    factory { ListViewModel() }
+    factory { DescriptionViewModel() }
 }
 
 val domainModule = module {
@@ -34,3 +38,4 @@ fun createDatabase(context: Context): DatabaseDao {
     ).fallbackToDestructiveMigration().build()
     return appDatabase.databaseDao()
 }
+

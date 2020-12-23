@@ -17,18 +17,19 @@ class MainViewModel(
     fun onClickedLogin(login: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val user = getUserUseCase.invoke(login, password)
-            val loginStatus = if (user != null) {
-                LoginSuccess(user.login)
-            } else {
-                LoginError
+            val loginStatus = if (login == "" || password == ""){
+                LoginEmpty
+            }else {
+                if (user != null) {
+                    LoginSuccess
+                } else {
+                    LoginError
+                }
             }
 
             withContext(Dispatchers.Main) {
                 loginLiveData.value = loginStatus
             }
-
-            //createUserUseCase.invoke(User("nom_est_test"))
-            //val user = getUserUseCase.invoke("nom_est_test")
         }
     }
 }
