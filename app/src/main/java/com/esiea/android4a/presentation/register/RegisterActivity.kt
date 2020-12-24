@@ -22,7 +22,7 @@ class RegisterActivity : AppCompatActivity() {
                     MaterialAlertDialogBuilder(this)
                         .setTitle("Success")
                         .setMessage("New account")
-                        .setPositiveButton("Ok") { dialog, which ->
+                        .setPositiveButton("Ok") { dialog, _ ->
                             dialog.dismiss()
                         }
                         .show()
@@ -32,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
                     MaterialAlertDialogBuilder(this)
                         .setTitle("Erreur")
                         .setMessage("Login or password empty")
-                        .setPositiveButton("Ok") { dialog, which ->
+                        .setPositiveButton("Ok") { dialog, _ ->
                             dialog.dismiss()
                         }
                         .show()

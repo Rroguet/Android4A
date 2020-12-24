@@ -1,6 +1,6 @@
 package com.esiea.android4a.data.remote
 
-import com.esiea.android4a.domain.entity.RestGalaxiesResponse
+import com.esiea.android4a.data.repository.RestGalaxiesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 

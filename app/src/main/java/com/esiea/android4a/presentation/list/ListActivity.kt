@@ -33,8 +33,8 @@ class ListActivity  : AppCompatActivity(), ListAdapter.OnItemClickListener {
 
     }
 
-    private fun showList(galaxieList:List<Galaxie>){
-        recycler_view.adapter = galaxieList.let { ListAdapter(it, this) }
+    private fun showList(galList:List<Galaxie>){
+        recycler_view.adapter = ListAdapter(galList, this)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
     }
@@ -51,7 +51,7 @@ class ListActivity  : AppCompatActivity(), ListAdapter.OnItemClickListener {
 
     }
 
-    fun showErreur() {
+    private fun showErreur() {
         Toast.makeText(this, "Connection failure", Toast.LENGTH_SHORT).show()
     }
 }

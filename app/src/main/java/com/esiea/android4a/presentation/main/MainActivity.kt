@@ -29,15 +29,15 @@ class MainActivity : AppCompatActivity() {
                     MaterialAlertDialogBuilder(this)
                         .setTitle("Erreur")
                         .setMessage("Compte inconnu")
-                        .setPositiveButton("Ok") { dialog, which -> dialog.dismiss()
+                        .setPositiveButton("Ok") { dialog, _ -> dialog.dismiss()
                         }
                         .show()
                 }
                 LoginEmpty -> {
                     MaterialAlertDialogBuilder(this)
                         .setTitle("Erreur")
-                        .setMessage("Login ou password vide")
-                        .setPositiveButton("Ok") { dialog, which ->
+                        .setMessage("Login ou Password vide")
+                        .setPositiveButton("Ok") { dialog, _ ->
                             dialog.dismiss()
                         }
                         .show()

@@ -7,6 +7,7 @@ import com.esiea.android4a.Constants
 import com.esiea.android4a.R
 import com.esiea.android4a.Singletons
 import com.esiea.android4a.domain.entity.Galaxie
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_description.*
 import org.koin.android.ext.android.inject
 
@@ -18,7 +19,7 @@ class DescriptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_description)
 
-        val intent = getIntent()
+        val intent = intent
         val galaxieJson = intent.getStringExtra(Constants.EXTRA_GALAXIE)
         val galaxie = Singletons.gson!!.fromJson(galaxieJson, Galaxie::class.java)
         descriptionViewModel.description(galaxie)
@@ -29,6 +30,10 @@ class DescriptionActivity : AppCompatActivity() {
 
         descriptionViewModel.descriptionText.observe(this, Observer {
                 value -> textDescription.text = value
+        })
+
+        descriptionViewModel.image.observe(this, Observer {
+                value -> Picasso.get().load(value).fit().into(imageView)
         })
 
         buttonBackList.setOnClickListener {

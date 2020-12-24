@@ -1,5 +1,6 @@
 package com.esiea.android4a.presentation.list
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.esiea.android4a.R
 import com.esiea.android4a.domain.entity.Galaxie
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_layout.view.*
 
 class ListAdapter(
@@ -41,16 +43,12 @@ class ListAdapter(
         return ViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = galaxies[position]
         holder.textView1.text = currentItem.name
         holder.textView2.text = "Constellation: " + currentItem.constellation
-        //Picasso.get().load(galaxie.getUrl()).fit().into(holder.icon)
-        /*holder.itemView.setOnClickListener(object:View.OnClickListener() {
-            fun onClick(v:View) {
-                listener.onItemClick(galaxie)
-            }
-        }*/
+        Picasso.get().load(currentItem.url).fit().into(holder.imageView)
     }
 
     override fun getItemCount() = galaxies.size
